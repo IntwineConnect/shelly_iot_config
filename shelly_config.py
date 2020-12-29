@@ -44,7 +44,7 @@ def run_config(ip):
             sleep(2)
             r = requests.get('http://%s/ota' % (ip,))
             print r.json()
-            if r.json().get('has_update') is False:
+            if r.json().get('status') == 'idle':
                 break
 
     # Step 3 - setup MQTT parameters
@@ -72,9 +72,9 @@ def run_config(ip):
     print json.dumps(r.json())
 
     # Reboot the device
-    print "*****  REBOOTING  *****"
-    r = requests.post('http://%s/reboot' % (ip,))
-    print r
+    #print "*****  REBOOTING  *****"
+    #r = requests.post('http://%s/reboot' % (ip,))
+    #print r
 
 
 def main():
