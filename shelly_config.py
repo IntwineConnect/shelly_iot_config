@@ -66,6 +66,10 @@ def run_config(ip):
     # Disable Shelly Cloud interface
     r = requests.post('http://%s/settings/cloud' % (ip,), {'enabled': False})
     print r
+    
+    # Configure to use last-state on boot
+    r = requests.post('http://%s/settings/relay/0' % (ip,), {'default_state': 'last'})
+    print r
 
     print "*****  FINAL SETTINGS  *****"
     r = requests.get('http://%s/settings' % (ip,))
